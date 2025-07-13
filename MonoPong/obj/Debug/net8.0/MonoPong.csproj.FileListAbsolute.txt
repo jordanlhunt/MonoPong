@@ -31,3 +31,4 @@ C:\Users\jorda\source\repos\CSHARP\Monogame\MonoPong\MonoPong\obj\Debug\net8.0\M
 C:\Users\jorda\source\repos\CSHARP\Monogame\MonoPong\MonoPong\obj\Debug\net8.0\ref\MonoPong.dll
 C:\Users\jorda\source\repos\CSHARP\Monogame\MonoPong\MonoPong\bin\Debug\net8.0\Content\Graphics\background.xnb
 C:\Users\jorda\source\repos\CSHARP\Monogame\MonoPong\MonoPong\bin\Debug\net8.0\Content\Graphics\sprites.xnb
+C:\Users\jorda\source\repos\CSHARP\Monogame\MonoPong\MonoPong\obj\Debug\net8.0\MonoPong.sourcelink.json

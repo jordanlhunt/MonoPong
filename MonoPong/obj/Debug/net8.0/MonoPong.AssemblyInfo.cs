@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MonoPong")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c671f49bc600e0941a85f723f8c832e012e05c3")]
 [assembly: System.Reflection.AssemblyProductAttribute("MonoPong")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MonoPong")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
