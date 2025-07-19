@@ -19,17 +19,22 @@ public class Game1 : Game
     const int PADDLE_WIDTH = 64;
     const int WINDOW_WIDTH = 800;
     const int WINDOW_HEIGHT = 600;
+
+    const int BACKGROUND_TEXTURE_WIDTH = 800;
+    const int BACKGROUND_TEXTURE_HEIGHT = 600;
     #endregion
     #region Member Variables
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
     Texture2D spritesTexture;
+    Texture2D backgroundTexture;
     Vector2[] paddlePositions = new Vector2[2];
     Vector2 ballLocation = new Vector2(BALL_STARTING_X, BALL_STARTING_Y);
     Vector2 ballTrajectory = Vector2.Zero;
     Vector2 paddleLocation = Vector2.Zero;
     bool isPlaying;
     #endregion
+    #region Public Methods
     public Game1()
     {
         graphics = new GraphicsDeviceManager(this);
@@ -39,6 +44,9 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
+        graphics.PreferredBackBufferWidth = WINDOW_WIDTH;
+        graphics.PreferredBackBufferHeight = WINDOW_HEIGHT;
+        graphics.ApplyChanges();
         paddlePositions[0] = new Vector2(0, WINDOW_HEIGHT / 2f);
         paddlePositions[1] = new Vector2(0, WINDOW_HEIGHT / 2f);
         isPlaying = false;
@@ -49,6 +57,7 @@ public class Game1 : Game
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
         spritesTexture = Content.Load<Texture2D>(@"Graphics/sprites");
+        backgroundTexture = Content.Load<Texture2D>(@"Graphics/background");
     }
 
     protected override void Update(GameTime gameTime)
@@ -66,7 +75,6 @@ public class Game1 : Game
             UpdatePlayer(i, gameTime);
         }
         UpdateBall(gameTime);
-
         base.Update(gameTime);
     }
 
@@ -74,6 +82,7 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
         spriteBatch.Begin();
+        DrawBackground();
         // Update both players with correct PlayerIndex cast
         for (int i = 0; i < 2; i++)
         {
@@ -83,15 +92,15 @@ public class Game1 : Game
         spriteBatch.End();
         base.Draw(gameTime);
     }
-
+    #endregion
     #region Private Methods
     private void UpdatePlayer(int playerIndex, GameTime gameTime)
     {
         GamePadState gamePadState = GamePad.GetState(playerIndex);
         paddlePositions[playerIndex].Y -=
             gamePadState.ThumbSticks.Left.Y * gameTime.ElapsedGameTime.Milliseconds * .5f;
-        float minimumY = PADDLE_HEIGHT / 2;
-        float maxY = WINDOW_HEIGHT - (PADDLE_HEIGHT + (PADDLE_HEIGHT / 2));
+        float minimumY = PADDLE_HEIGHT;
+        float maxY = WINDOW_HEIGHT - PADDLE_HEIGHT;
         paddlePositions[playerIndex].Y = MathHelper.Clamp(
             paddlePositions[playerIndex].Y,
             minimumY,
@@ -111,13 +120,11 @@ public class Game1 : Game
     private void UpdateBall(GameTime gameTime)
     {
         float previousXLocation = ballLocation.X;
-
         const float RIGHT_BOUND = 800.0f;
         const float UPPER_BOUND = 50.0f;
         const float LOWER_BOUND = 550.0f;
         const float LEFT_REVERSE = 64.0f;
         const float RIGHT_REVERSE = 736.0f;
-
         ballLocation += ballTrajectory * gameTime.ElapsedGameTime.Milliseconds;
         if (ballLocation.X > WINDOW_WIDTH)
         {
@@ -143,7 +150,7 @@ public class Game1 : Game
         }
         if (ballLocation.X > RIGHT_REVERSE)
         {
-            BallCollision(1, previousXLocation >= RIGHT_REVERSE);
+            BallCollision(1, previousXLocation <= RIGHT_REVERSE);
         }
     }
 
@@ -174,6 +181,15 @@ public class Game1 : Game
         );
     }
 
+    private void DrawBackground()
+    {
+        spriteBatch.Draw(
+            backgroundTexture,
+            new Rectangle(0, 0, BACKGROUND_TEXTURE_WIDTH, BACKGROUND_TEXTURE_HEIGHT),
+            Color.White
+        );
+    }
+
     private void BallCollision(int playerIndex, bool shouldReverse)
     {
         if (
@@ -188,5 +204,6 @@ public class Game1 : Game
             ballTrajectory.Y = (ballTrajectory.Y - paddlePositions[playerIndex].Y) * .001f;
         }
     }
+
     #endregion
 }
