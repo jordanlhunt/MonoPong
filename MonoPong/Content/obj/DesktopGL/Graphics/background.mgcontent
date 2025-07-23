@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>c:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/Graphics/background.bmp</SourceFile>
-  <SourceTime>2008-06-26T20:16:34-05:00</SourceTime>
+  <SourceTime>2025-07-11T17:57:26.3852769-05:00</SourceTime>
   <DestFile>c:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/bin/DesktopGL/Graphics/background.xnb</DestFile>
-  <DestTime>2025-07-10T10:13:27.7492626-05:00</DestTime>
+  <DestTime>2025-07-23T12:28:16.3353094-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2025-06-02T05:31:02-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

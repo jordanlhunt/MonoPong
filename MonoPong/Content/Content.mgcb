@@ -37,3 +37,9 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/sprites.png
 
+#begin SoundEffects/zap.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/zap.wav
+

@@ -2,6 +2,7 @@
 using System.Data;
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -10,29 +11,31 @@ namespace MonoPong;
 public class Game1 : Game
 {
     #region Constants
-    const float PADDLE_STARTING_X = 300.0f;
-    const float PADDLE_STARTING_Y = 300.0f;
     const float BALL_STARTING_X = 400.0f;
     const float BALL_STARTING_Y = 300.0f;
     const float PADDLE_SPEED = 0.5f;
+    const float PADDLE_STARTING_X = 300.0f;
+    const float PADDLE_STARTING_Y = 300.0f;
+    const int BACKGROUND_TEXTURE_HEIGHT = 600;
+    const int BACKGROUND_TEXTURE_WIDTH = 800;
     const int PADDLE_HEIGHT = 128;
     const int PADDLE_WIDTH = 64;
-    const int WINDOW_WIDTH = 800;
     const int WINDOW_HEIGHT = 600;
-
-    const int BACKGROUND_TEXTURE_WIDTH = 800;
-    const int BACKGROUND_TEXTURE_HEIGHT = 600;
+    const int WINDOW_WIDTH = 800;
     #endregion
     #region Member Variables
+    bool isPlaying;
+    float[] forceFeedback = { 0.0f, 0.0f };
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
-    Texture2D spritesTexture;
     Texture2D backgroundTexture;
-    Vector2[] paddlePositions = new Vector2[2];
+    Texture2D spritesTexture;
     Vector2 ballLocation = new Vector2(BALL_STARTING_X, BALL_STARTING_Y);
     Vector2 ballTrajectory = Vector2.Zero;
     Vector2 paddleLocation = Vector2.Zero;
-    bool isPlaying;
+    Vector2[] paddlePositions = new Vector2[2];
+    SoundEffect zapSoundEffect;
+
     #endregion
     #region Public Methods
     public Game1()
@@ -50,6 +53,7 @@ public class Game1 : Game
         paddlePositions[0] = new Vector2(0, WINDOW_HEIGHT / 2f);
         paddlePositions[1] = new Vector2(0, WINDOW_HEIGHT / 2f);
         isPlaying = false;
+
         base.Initialize();
     }
 
@@ -58,6 +62,7 @@ public class Game1 : Game
         spriteBatch = new SpriteBatch(GraphicsDevice);
         spritesTexture = Content.Load<Texture2D>(@"Graphics/sprites");
         backgroundTexture = Content.Load<Texture2D>(@"Graphics/background");
+        zapSoundEffect = Content.Load<SoundEffect>(@"SoundEffects/zap");
     }
 
     protected override void Update(GameTime gameTime)
@@ -115,6 +120,20 @@ public class Game1 : Game
                 ballTrajectory.Y = -.5f;
             }
         }
+        if (forceFeedback[playerIndex] > 0.0f)
+        {
+            forceFeedback[playerIndex] -= gameTime.ElapsedGameTime.Milliseconds;
+        }
+        float forceFeedbackTime = forceFeedback[playerIndex] / 50.0f;
+        if (forceFeedbackTime > 1.0f)
+        {
+            forceFeedbackTime = 1.0f;
+        }
+        if (forceFeedbackTime < 0.0f)
+        {
+            forceFeedbackTime = 0.0f;
+        }
+        GamePad.SetVibration(playerIndex, forceFeedbackTime, forceFeedbackTime);
     }
 
     private void UpdateBall(GameTime gameTime)
@@ -193,8 +212,8 @@ public class Game1 : Game
     private void BallCollision(int playerIndex, bool shouldReverse)
     {
         if (
-            ballLocation.Y < paddlePositions[playerIndex].Y + 64.0f
-            && ballLocation.Y > paddlePositions[playerIndex].Y - 64.0f
+            ballLocation.Y < paddlePositions[playerIndex].Y + PADDLE_WIDTH
+            && ballLocation.Y > paddlePositions[playerIndex].Y - PADDLE_WIDTH
         )
         {
             if (shouldReverse)
@@ -202,8 +221,9 @@ public class Game1 : Game
                 ballTrajectory.X *= -1;
             }
             ballTrajectory.Y = (ballTrajectory.Y - paddlePositions[playerIndex].Y) * .001f;
+            forceFeedback[playerIndex] = 100.0f;
+            zapSoundEffect.Play();
         }
     }
-
     #endregion
 }

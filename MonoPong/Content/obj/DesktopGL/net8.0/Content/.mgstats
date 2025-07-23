@@ -1,3 +1,4 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
 "C:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/Graphics/background.bmp","C:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/bin/DesktopGL/Content/Graphics/background.xnb","TextureProcessor","Texture2DContent",1440054,1920085,0.2306685
 "C:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/Graphics/sprites.png","C:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/bin/DesktopGL/Content/Graphics/sprites.xnb","TextureProcessor","Texture2DContent",262272,262229,0.0319293
+"C:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/SoundEffects/zap.wav","C:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/bin/DesktopGL/Content/SoundEffects/zap.xnb","SoundEffectProcessor","SoundEffectContent",10888,10949,0.3611779

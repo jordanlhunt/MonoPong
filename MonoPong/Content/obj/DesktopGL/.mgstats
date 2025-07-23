@@ -1,3 +1,4 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"c:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/Graphics/background.bmp","c:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/bin/DesktopGL/Graphics/background.xnb","TextureProcessor","Texture2DContent",1440056,1920085,0.1850288
+"c:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/Graphics/background.bmp","c:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/bin/DesktopGL/Graphics/background.xnb","TextureProcessor","Texture2DContent",1440054,1920085,0.1736027
 "c:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/Graphics/sprites.png","c:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/bin/DesktopGL/Graphics/sprites.xnb","TextureProcessor","Texture2DContent",262272,262229,0.0217966
+"c:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/SoundEffects/zap.wav","c:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/bin/DesktopGL/SoundEffects/zap.xnb","SoundEffectProcessor","SoundEffectContent",10888,10949,0.7380457

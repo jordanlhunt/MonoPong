@@ -6,8 +6,10 @@
   <SourceFiles>
     <File>C:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/Graphics/background.bmp</File>
     <File>C:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/Graphics/sprites.png</File>
+    <File>C:/Users/jorda/source/repos/CSHARP/Monogame/MonoPong/MonoPong/Content/SoundEffects/zap.wav</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
